@@ -54,15 +54,15 @@
 <body>
     <header>
         <div class="d-flex flex-row flex-nowrap align-items-center justify-content-between px-4 p-2">
-            <h1 class="text-white text-center">Square root calculation</h1>
+            <h1 id="mainHeader" class="text-white text-center" >Square root calculation</h1>
 
             <div>
                 <select id="language" class="form-select text-white bg-transparent" title="Select language">
-                    <option selected>Russian</option>
-                    <option>English</option>
-                    <option>Deutch</option>
-                    <option>Espanol</option>
-                    <option>French</option>
+                    <option value="RU">Русский</option>
+                    <option selected value="EN">English</option>
+                    <option value="DE">Deutsch</option>
+                    <option value="ES">Español</option>
+                    <option value="FR">Français</option>
                 </select>
             </div>
         </div>
@@ -71,12 +71,12 @@
     <main class="w-100 d-flex flex-row flex-nowrap justify-content-center">
         <div class="panel p-4">
             <div>
-                <label class="text-white text-center d-block h4 p-1" for="precision">Input value</label>
+                <label id="inputLabel" class="text-white text-center d-block h4 p-1" for="precision">Input value</label>
                 <input id="value" class="value w-100 form-control" type="text" aria-label="Input value" />
             </div>
 
             <div class="mt-4">
-                <label class="text-white text-center d-block h4 p-1" for="precision">
+                <label id="significantDigits" class="text-white text-center d-block h4 p-1" for="precision">
                     Significant digits
                 </label>
 
@@ -89,7 +89,7 @@
             </div>
 
             <div class="mt-4">
-                <label class="text-white text-center d-block h4 p-1" for="precision">
+                <label id="accuracy" class="text-white text-center d-block h4 p-1" for="precision">
                     Digits after the decimal point
                 </label>
 
@@ -124,20 +124,53 @@
         }
 
         const dictRu = {
-
+            header: "Вычисление квадратного корня",
+            inputLabel: "Вводимое значение",
+            significantDigits: "Значащие цифры",
+            accuracy: "Цифры после запятой",
+            result: "Введите входное значение",
         }
+
         const dictEn = {
-
+            header: "Square root calculation",
+            inputLabel: "Input value",
+            significantDigits: "Significant digits",
+            accuracy: "Digits after the decimal point",
+            result: "Enter input value",
         }
+
         const dictDe = {
-
+            header: "Berechnung der Quadratwurzel",
+            inputLabel: "Eingangswert",
+            significantDigits: "Signifikante Ziffern",
+            accuracy: "Ziffern nach dem Dezimalpunkt",
+            result: "Eingabewert eingeben",
         }
+        
         const dictEs = {
-
+            header: "Cálculo de la raíz cuadrada",
+            inputLabel: "Valor de entrada",
+            significantDigits: "Dígitos significativos",
+            accuracy: "Dígitos después del punto decimal",
+            result: "Introduzca el valor de entrada",
         }
+
         const dictFr = {
-
+            header: "Calcul de la racine carrée",
+            inputLabel: "Valeur d'entrée",
+            significantDigits: "Chiffres significatifs",
+            accuracy: "Chiffres après la virgule",
+            result: "Entrer la valeur d'entrée",
         }
+
+        const allDicts= {
+            RU: dictRu,
+            EN: dictEn,
+            DE: dictDe,
+            ES: dictEs,
+            FR: dictFr,
+        }
+        
 
         const valueInput = document.getElementById('value')
         const resultInput = document.getElementById('result')
@@ -232,8 +265,17 @@
             resultInput.innerText = '=' + nonBreakingSpace + formatted
         }
 
-
         valueInput.addEventListener('input', updateResult)
+
+        const updateLanguage = () => {
+            mainHeader.innerText = allDicts[languageSelect.value].header
+            inputLabel.innerText = allDicts[languageSelect.value].inputLabel
+            significantDigits.innerText = allDicts[languageSelect.value].significantDigits
+            accuracy.innerText = allDicts[languageSelect.value].accuracy
+            result.innerText = allDicts[languageSelect.value].result
+        }
+
+        languageSelect.addEventListener('input', updateLanguage)
 
         for (let input of [precisionInput, precisionSlider]) {
             input.min = config.minPrecision
