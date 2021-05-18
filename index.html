@@ -35,9 +35,7 @@
 
         .panel {
             background-color: var(--bg-color);
-            width: 100%;
             max-width: 50em;
-            min-width: 20em;
         }
 
         .result {
@@ -47,36 +45,38 @@
     </style>
 </head>
 
-<body>
-    <header>
-        <div class="d-flex flex-row flex-nowrap align-items-center justify-content-between px-4 p-2">
-            <h1 id="mainHeader" class="text-white text-center">Square root calculation</h1>
+<body class="w-100">
+    <header class="row w-100 m-0 px-4 py-2">
+        <h1 id="mainHeader" class="col col-sm-8 col-md-10 text-start text-white">
+            Square root calculation
+        </h1>
 
-            <div>
-                <select id="language" class="form-select text-white bg-transparent" title="Select language">
-                    <option value="RU">Русский</option>
-                    <option selected value="EN">English</option>
-                    <option value="DE">Deutsch</option>
-                    <option value="ES">Español</option>
-                    <option value="FR">Français</option>
-                </select>
-            </div>
+        <div class="col col-sm-4 col-md-2 align-self-center">
+            <select id="language" class="form-select bg-transparent text-white" title="Select language">
+                <option value="RU">Русский</option>
+                <option selected value="EN">English</option>
+                <option value="DE">Deutsch</option>
+                <option value="ES">Español</option>
+                <option value="FR">Français</option>
+            </select>
         </div>
     </header>
 
     <main class="w-100 d-flex flex-row flex-nowrap justify-content-center">
-        <div class="panel p-4">
+        <div class="panel w-100 p-4">
             <div>
                 <label id="inputLabel" class="text-white text-center d-block h4 p-1" for="precision">Input value</label>
                 <input id="value" class="value w-100 form-control" type="text" aria-label="Input value" />
             </div>
 
-            <div class="mt-4">
-                <label id="significantDigits" class="text-white text-center d-block h4 p-1" for="precision">
-                    Significant digits
-                </label>
+            <div class="row row-cols-1 row-cols-sm-2 mt-4">
+                <div class="col">
+                    <label id="significantDigits" class="text-white text-center d-block h4 p-1" for="precision">
+                        Significant digits
+                    </label>
+                </div>
 
-                <div class="d-flex flex-row flex-nowrap gap-4 align-items-center">
+                <div class="col d-flex flex-row flex-nowrap gap-4 align-items-center">
                     <input id="precision" class="text-end form-control" type="number"
                         aria-label="Input field for adjusting number of significant digits" />
                     <input id="precision-slider" class="form-range" type="range"
@@ -84,12 +84,14 @@
                 </div>
             </div>
 
-            <div class="mt-4">
-                <label id="accuracy" class="text-white text-center d-block h4 p-1" for="precision">
-                    Digits after the decimal point
-                </label>
+            <div class="row row-cols-1 row-cols-sm-2 mt-4">
+                <div class="col">
+                    <label id="accuracy" class="text-white text-center d-block h4 p-1" for="precision">
+                        Digits after the decimal point
+                    </label>
+                </div>
 
-                <div class="d-flex flex-row flex-nowrap gap-4 align-items-center">
+                <div class="col d-flex flex-row flex-nowrap gap-4 align-items-center">
                     <input id="digits-after-point" class="text-end form-control" type="number"
                         aria-label="Input field for adjusting number of digits after the decimal point" />
                     <input id="digits-after-point-slider" class="form-range" type="range"
@@ -105,12 +107,12 @@
         </div>
     </main>
 
-    <footer class="w-100 mt-3 p-2 d-flex flex-row flex-wrap justify-content-between gap-2">
-        <span class="text-white">Web sqrt, 2021</span>
-        <span class="text-white">
+    <footer class="w-100 mt-3 p-2">
+        <p class="text-white text-center w-100 m-1">Web sqrt, 2021.</p>
+        <p class="text-white text-center w-100 m-1">
             <span id="support">If you've encountered error, contact us at</span>
             <a href="mailto:support@websqrt.com">support@websqrt.com</a>
-        </span>
+        </p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/5.0.0/math.js"
