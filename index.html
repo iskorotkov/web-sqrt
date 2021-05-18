@@ -54,7 +54,7 @@
 <body>
     <header>
         <div class="d-flex flex-row flex-nowrap align-items-center justify-content-between px-4 p-2">
-            <h1 id="mainHeader" class="text-white text-center" >Square root calculation</h1>
+            <h1 id="mainHeader" class="text-white text-center">Square root calculation</h1>
 
             <div>
                 <select id="language" class="form-select text-white bg-transparent" title="Select language">
@@ -146,7 +146,7 @@
             accuracy: "Ziffern nach dem Dezimalpunkt",
             result: "Eingabewert eingeben",
         }
-        
+
         const dictEs = {
             header: "Cálculo de la raíz cuadrada",
             inputLabel: "Valor de entrada",
@@ -163,14 +163,14 @@
             result: "Entrer la valeur d'entrée",
         }
 
-        const allDicts= {
+        const allDicts = {
             RU: dictRu,
             EN: dictEn,
             DE: dictDe,
             ES: dictEs,
             FR: dictFr,
         }
-        
+
 
         const valueInput = document.getElementById('value')
         const resultInput = document.getElementById('result')
@@ -232,7 +232,6 @@
         const updateResult = () => {
             try {
                 var value = math.eval(valueInput.value)
-                setPrecisionSupported(!('re' in value))
             } catch (e) {
                 return
             }
@@ -241,8 +240,9 @@
                 const digits = digitsAfterPointInput.valueAsNumber
             const formatted = digits > 0 ? math.format(result, { notation: 'fixed', precision: digits }) : math.round(result)
 
-            const nonBreakingSpace = '\u00A0'
-            resultInput.innerText = '=' + nonBreakingSpace + formatted
+            setPrecisionSupported(!('re' in result))
+
+            resultInput.innerText = '=' + '\u00A0' + formatted
         }
 
         valueInput.addEventListener('input', updateResult)
