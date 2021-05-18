@@ -24,10 +24,6 @@
             border-bottom: solid 0.2em var(--bg-color-darker);
         }
 
-        footer {
-            background-color: var(--bg-color);
-        }
-
         body {
             background-color: var(--bg-color-darker);
         }
@@ -109,6 +105,14 @@
         </div>
     </main>
 
+    <footer class="w-100 mt-3 p-2 d-flex flex-row flex-wrap justify-content-between gap-2">
+        <span class="text-white">Web sqrt, 2021</span>
+        <span class="text-white">
+            <span id="support">If you've encountered error, contact us at</span>
+            <a href="mailto:support@websqrt.com">support@websqrt.com</a>
+        </span>
+    </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/5.0.0/math.js"
         integrity="sha512-+KihqiIrhYt4/tFb42KiOJ+wr0PM6dVMw9twO1Ju+sZ0OdgurvE/9dy2jAS0Fr0MCVryF2EXxPH9HRXg6CaFgg=="
         crossorigin="anonymous"></script>
@@ -129,6 +133,7 @@
             significantDigits: "Значащие цифры",
             accuracy: "Цифры после запятой",
             result: "Введите входное значение",
+            support: "Если вы обнаружили ошибку, сообщите нам по адресу",
         }
 
         const dictEn = {
@@ -137,6 +142,7 @@
             significantDigits: "Significant digits",
             accuracy: "Digits after the decimal point",
             result: "Enter input value",
+            support: "If you've encountered error, contact us at",
         }
 
         const dictDe = {
@@ -144,7 +150,8 @@
             inputLabel: "Eingangswert",
             significantDigits: "Signifikante Ziffern",
             accuracy: "Ziffern nach dem Dezimalpunkt",
-            result: "Eingabewert eingeben",
+            result: "Als u een fout bent tegengekomen, neem dan contact met ons op via",
+            support: "Als u een fout bent tegengekomen, neem dan contact met ons op via",
         }
 
         const dictEs = {
@@ -153,6 +160,7 @@
             significantDigits: "Dígitos significativos",
             accuracy: "Dígitos después del punto decimal",
             result: "Introduzca el valor de entrada",
+            support: "Si ha encontrado un error, contáctenos en",
         }
 
         const dictFr = {
@@ -161,6 +169,7 @@
             significantDigits: "Chiffres significatifs",
             accuracy: "Chiffres après la virgule",
             result: "Entrer la valeur d'entrée",
+            support: "Si vous rencontrez une erreur, contactez-nous au",
         }
 
         const allDicts = {
@@ -170,7 +179,6 @@
             ES: dictEs,
             FR: dictFr,
         }
-
 
         const valueInput = document.getElementById('value')
         const resultInput = document.getElementById('result')
@@ -237,7 +245,7 @@
             }
 
             const result = math.sqrt(value)
-                const digits = digitsAfterPointInput.valueAsNumber
+            const digits = digitsAfterPointInput.valueAsNumber
             const formatted = digits > 0 ? math.format(result, { notation: 'fixed', precision: digits }) : math.round(result)
 
             setPrecisionSupported(!('re' in result))
@@ -253,6 +261,7 @@
             significantDigits.innerText = allDicts[languageSelect.value].significantDigits
             accuracy.innerText = allDicts[languageSelect.value].accuracy
             result.innerText = allDicts[languageSelect.value].result
+            support.innerText = allDicts[languageSelect.value].support
         }
 
         languageSelect.addEventListener('input', updateLanguage)
