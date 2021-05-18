@@ -238,28 +238,8 @@
             }
 
             const result = math.sqrt(value)
-
-            var formatted = ''
-            if ('re' in result) {
                 const digits = digitsAfterPointInput.valueAsNumber
-                var [re, im] = math.format(result, { notation: 'fixed' })
-                [re, im] = [clampDigits(result.re), clampDigits(result.im)]
-
-                if (re !== '0' && im !== '0') {
-                    if (im > 0) {
-                        formatted = `${re} + ${im}i`
-                    } else {
-                        formatted = `${re} - ${-im}i`
-                    }
-                } else if (re === '0') {
-                    formatted = `${im}i`
-                } else {
-                    formatted = `${re}`
-                }
-            } else {
-                const value = math.format(result, { notation: 'fixed' })
-                formatted = clampDigits(value)
-            }
+            const formatted = digits > 0 ? math.format(result, { notation: 'fixed', precision: digits }) : math.round(result)
 
             const nonBreakingSpace = '\u00A0'
             resultInput.innerText = '=' + nonBreakingSpace + formatted
